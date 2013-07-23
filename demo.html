@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demonstration of listAnimate</title>
+	<style type="text/css">
+		.containerUl {
+			position: relative;
+			width: 50%;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+	</style>
+</head>
+<body>
+	<ul class="containerUl">
+		<li><a href="#">Item 01</a></li>
+		<li><a href="#">Item 02</a></li>
+		<li><a href="#">Item 03</a></li>
+		<li><a href="#">Item 04</a></li>
+		<li><a href="#">Item 05</a></li>
+	</ul>
+
+	<p><a href="#" class="changeElement">Change element Item 01 by Item 05</a> <em>(first, please, check if Item 01 is visible and click in Item 05 to hide, after click in this link. Doing this will be easier to understand the functionality)</em></p>
+
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="jquery.listAnimate.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.containerUl').listAnimate();
+
+			$('.containerUl a').click(function(e){
+				e.preventDefault();
+				if($('.containerUl').data('_listAnimate').animationStopped) {
+					$('.containerUl').data('_listAnimate').hideElement($(this).parent().index());
+				}
+			});
+
+			$('.changeElement').click(function(e){
+				e.preventDefault();
+				if($('.containerUl').data('_listAnimate').animationStopped) {
+					$('.containerUl').data('_listAnimate').changeElement(0, 4);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
